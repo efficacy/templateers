@@ -6,14 +6,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 
+import junit.framework.TestCase;
 import wrapper.EmoTemplateSystem;
 import wrapper.FreeMarkerTemplateSystem;
 import wrapper.StringtreeTemplateSystem;
 import wrapper.TemplateSystem;
 import wrapper.VelocityTemplateSystem;
-
-import junit.framework.TestCase;
 
 public abstract class PerformanceTestCase extends TestCase {
 	protected StringtreeTemplateSystem st;
@@ -31,6 +31,13 @@ public abstract class PerformanceTestCase extends TestCase {
 		
 		systems = new ArrayList<TemplateSystem>(); 
 		systems.addAll(Arrays.asList(st, emo, vel, fm));
+	}
+	
+	public void testSystem() {
+		Properties system = System.getProperties();
+		System.out.println("Running tests using Java " + system.getProperty("java.version") +
+				" on " + system.getProperty("os.name") + "(" + system.getProperty("os.arch") + ") " + 
+				system.getProperty("os.version"));
 	}
 	
 	protected void putTemplate(String name, String template) {
