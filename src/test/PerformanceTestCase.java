@@ -36,7 +36,7 @@ public abstract class PerformanceTestCase extends TestCase {
 	public void testSystem() {
 		Properties system = System.getProperties();
 		System.out.println("Running tests using Java " + system.getProperty("java.version") +
-				" on " + system.getProperty("os.name") + "(" + system.getProperty("os.arch") + ") " + 
+				" on " + system.getProperty("os.name") + " (" + system.getProperty("os.arch") + ") " + 
 				system.getProperty("os.version"));
 	}
 	

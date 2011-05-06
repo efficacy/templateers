@@ -19,6 +19,20 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		check("single subst", 10000, "hello there, Frank!", "ugh");
 	}
 
+	public void testIncludeTemplate() {
+		putTemplate("name", "Frank");
+
+		st.putTemplate("ugh", "hello there, ${*name}!");
+		
+		emo.putTemplate("ugh", "hello there, ${*name}!");
+
+		vel.putTemplate("ugh", "hello there, #include(\"name\")!");
+
+		fm.putTemplate("ugh", "hello there, <#include \"name\">!");
+
+		check("include", 10000, "hello there, Frank!", "ugh");
+	}
+
 	public void testConditionalSubstitution() {
 		putContext("yes", Boolean.TRUE);
 
