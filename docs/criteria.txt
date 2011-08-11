@@ -1,0 +1,50 @@
+Template evaluation criteria
+
+* raw text
+* basic variable substitution from memory context
+* basic variable substitution from external source (database, file, repositry etc.)
+* escaped variable substitution
+
+* include raw text
+* include template
+* pass value(s) to included template
+
+* conditional literal
+* conditional include
+* conditional variable substitution
+
+* loop through literal list
+* loop through variable list
+* loop through numeric range
+* loop payload literal
+* loop payload variable
+* loop payload include
+* loop separator literal
+* loop separator variable
+* loop separator include
+
+* set value to literal
+* set value to other value
+* set value to expression
+* set value to expanded template
+* add value to collection
+* unset value
+* remove value from collection
+
+* access values in array/collection
+* access values in map/dictionary
+* access properties of variables
+* call methods on variables
+* call procedures / static methods
+* access non-cached (dynamically changing) variables
+
+* automatic header/footer
+* override automatic header/footer
+* nested header/footer
+* pass value(s) to header/footer
+
+* pick up template changes in running system
+
+* realistic web page test (such as Simon's blog example)
+* non-html text example
+* non-text binary example
