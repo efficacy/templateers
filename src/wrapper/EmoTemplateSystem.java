@@ -1,24 +1,22 @@
 package wrapper;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.stringtree.context.Context;
+import org.stringtree.Context;
 import org.stringtree.context.MapContext;
 import org.stringtree.solomon.EasySolomon;
 import org.stringtree.solomon.Session;
+import org.stringtree.solomon.TemplateCache;
 
 public class EmoTemplateSystem extends AbstractTemplateSystem {
-	protected Map<String, String> templates;
+	protected TemplateCache templates;
 	protected Context<Object> context;
 	protected Session session;
 	protected EasySolomon templater;
 	
 	public EmoTemplateSystem() {
 		super("emo");
-		templates = new HashMap<String, String>();
+		templates = new TemplateCache();
 		context = new MapContext<Object>();
-		templater = new EasySolomon(new MapContext<String>(templates), context);
+		templater = new EasySolomon(templates, context);
 		session = new Session();
 	}
 
