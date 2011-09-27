@@ -13,7 +13,7 @@ public class StringtreeTemplateSystem extends AbstractTemplateSystem {
 	protected EasyTemplater templater;
 	
 	public StringtreeTemplateSystem() {
-		super("st");
+		super("stringtree");
 		templates = new HashMap<String, Object>();
 		context = new MapStringKeeper();
 		templater = new EasyTemplater(new MapFetcher(templates), context);

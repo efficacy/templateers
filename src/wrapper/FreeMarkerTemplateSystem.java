@@ -18,7 +18,7 @@ public class FreeMarkerTemplateSystem extends AbstractTemplateSystem {
     Map<String, Object> root;
     	
 	public FreeMarkerTemplateSystem() {
-		super("fm");
+		super("freemarker");
 		cfg = new Configuration();
 		stringLoader = new StringTemplateLoader();
 

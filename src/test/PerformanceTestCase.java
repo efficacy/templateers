@@ -35,7 +35,7 @@ public abstract class PerformanceTestCase extends TestCase {
 		casper = new CasperTemplateSystem();
 		
 		systems = new ArrayList<TemplateSystem>(); 
-		systems.addAll(Arrays.asList(st, emo, vel, fm, hapax , casper));
+		systems.addAll(Arrays.asList(emo, st, fm, vel, hapax, casper));
 	}
 	
 	public void testSystem() {

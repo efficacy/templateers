@@ -14,7 +14,7 @@ public class VelocityTemplateSystem extends AbstractTemplateSystem {
     VelocityContext context;
 	
 	public VelocityTemplateSystem() {
-		super("vel");
+		super("velocity");
 	    ve = new VelocityEngine();
         ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "string");
         ve.addProperty("string.resource.loader.class", StringResourceLoader.class.getName());
