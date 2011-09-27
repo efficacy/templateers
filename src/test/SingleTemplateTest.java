@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class SingleTemplateTest extends PerformanceTestCase {
 
-	int times = 1; // 10000
+	int times = 10000; // 10000
 
 	public void testAbsorbSetupTime() {
 		assertEquals("hello", "hello");
