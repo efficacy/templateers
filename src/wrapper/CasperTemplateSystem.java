@@ -18,7 +18,7 @@ public class CasperTemplateSystem extends AbstractTemplateSystem {
 	Map<String, String> templates;
 	
 	public CasperTemplateSystem() {
-		super("cas");
+		super("casper");
 		props = new Properties();
 		templates = new HashMap<String, String>();
 		props.put("templates", templates);

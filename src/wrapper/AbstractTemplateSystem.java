@@ -20,7 +20,7 @@ public abstract class AbstractTemplateSystem implements TemplateSystem {
 		}
 		clock.stop();
 		if (!expected.equals(result)) {
-//=System.err.println("expected [" + expected + "] got [" + result + "]");
+//System.err.println("expected [" + expected + "] got [" + result + "]");
 			System.out.print("[*]");
 		}
 		return clock.total();

@@ -1,6 +1,5 @@
 package test;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,6 +11,7 @@ import junit.framework.TestCase;
 import wrapper.CasperTemplateSystem;
 import wrapper.EmoTemplateSystem;
 import wrapper.FreeMarkerTemplateSystem;
+import wrapper.HapaxTemplateSystem;
 import wrapper.StringtreeTemplateSystem;
 import wrapper.TemplateSystem;
 import wrapper.VelocityTemplateSystem;
@@ -21,6 +21,7 @@ public abstract class PerformanceTestCase extends TestCase {
 	protected EmoTemplateSystem emo;
 	protected VelocityTemplateSystem vel;
 	protected FreeMarkerTemplateSystem fm;
+	protected HapaxTemplateSystem hapax;
 	protected CasperTemplateSystem casper;
 	
 	Collection<TemplateSystem> systems;
@@ -30,10 +31,11 @@ public abstract class PerformanceTestCase extends TestCase {
 		emo = new EmoTemplateSystem();
 		vel = new VelocityTemplateSystem();
 		fm = new FreeMarkerTemplateSystem();
+		hapax = new HapaxTemplateSystem();
 		casper = new CasperTemplateSystem();
 		
 		systems = new ArrayList<TemplateSystem>(); 
-		systems.addAll(Arrays.asList(st, emo, vel, fm, casper));
+		systems.addAll(Arrays.asList(st, emo, vel, fm, hapax /*, casper*/));
 	}
 	
 	public void testSystem() {
