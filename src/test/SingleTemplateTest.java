@@ -30,6 +30,8 @@ public class SingleTemplateTest extends PerformanceTestCase {
 
 		fm.putTemplate("ugh", "hello there, <#include \"name\">!");
 
+		casper.putTemplate("ugh", "hello there, ${templates.get('name')}!");
+		
 		check("include", 10000, "hello there, Frank!", "ugh");
 	}
 
@@ -43,6 +45,8 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		vel.putTemplate("ugh", "hello there, #if($yes)Frank#else#**#Margaret#end!");
 
 		fm.putTemplate("ugh", "hello there, <#if yes>Frank<#else>Margaret</#if>!");
+
+		casper.putTemplate("ugh", "hello there, <% if (yes) { $out('Frank'); } else { $out('Margaret'); } %>!");
 
 		check("conditional", 10000, "hello there, Frank!", "ugh");
 	}
@@ -65,6 +69,8 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		vel.putTemplate("ugh", "hello there, #foreach($person in $family)[$person],#end!");
 
 		fm.putTemplate("ugh", "hello there, <#list family as person>[${person}]<#if person_has_next>,</#if></#list>!");
+
+		casper.putTemplate("ugh", "hello there, <% n = family.size(); for (i=0; i < n; i++) { $out('[' + family.get(i) + ']'); if (i < n-1) $out(','); } %>!");
 
 		check("iteration", 10000, "hello there, [Frank],[Margaret],[Elizabeth],[Katherine]!", "ugh");
 	}

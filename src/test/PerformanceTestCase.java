@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import junit.framework.TestCase;
+import wrapper.CasperTemplateSystem;
 import wrapper.EmoTemplateSystem;
 import wrapper.FreeMarkerTemplateSystem;
 import wrapper.StringtreeTemplateSystem;
@@ -20,6 +21,7 @@ public abstract class PerformanceTestCase extends TestCase {
 	protected EmoTemplateSystem emo;
 	protected VelocityTemplateSystem vel;
 	protected FreeMarkerTemplateSystem fm;
+	protected CasperTemplateSystem casper;
 	
 	Collection<TemplateSystem> systems;
 	
@@ -28,9 +30,10 @@ public abstract class PerformanceTestCase extends TestCase {
 		emo = new EmoTemplateSystem();
 		vel = new VelocityTemplateSystem();
 		fm = new FreeMarkerTemplateSystem();
+		casper = new CasperTemplateSystem();
 		
 		systems = new ArrayList<TemplateSystem>(); 
-		systems.addAll(Arrays.asList(st, emo, vel, fm));
+		systems.addAll(Arrays.asList(st, emo, vel, fm, casper));
 	}
 	
 	public void testSystem() {

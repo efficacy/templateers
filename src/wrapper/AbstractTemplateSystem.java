@@ -19,7 +19,10 @@ public abstract class AbstractTemplateSystem implements TemplateSystem {
 			result = expand(tplName);
 		}
 		clock.stop();
-		if (!expected.equals(result)) System.out.print("[*]");
+		if (!expected.equals(result)) {
+//=System.err.println("expected [" + expected + "] got [" + result + "]");
+			System.out.print("[*]");
+		}
 		return clock.total();
 	}
 

@@ -8,14 +8,14 @@ import org.stringtree.solomon.TemplateCache;
 
 public class EmoTemplateSystem extends AbstractTemplateSystem {
 	protected TemplateCache templates;
-	protected Context<Object> context;
+	protected Context<String> context;
 	protected Session session;
 	protected EasySolomon templater;
 	
 	public EmoTemplateSystem() {
 		super("emo");
 		templates = new TemplateCache();
-		context = new MapContext<Object>();
+		context = new MapContext<String>();
 		templater = new EasySolomon(templates, context);
 		session = new Session();
 	}
