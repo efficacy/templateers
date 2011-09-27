@@ -27,13 +27,13 @@ public class SingleTemplateTest extends PerformanceTestCase {
 	public void testIncludeTemplate() {
 		putTemplate("name", "Frank");
 
-		st.putTemplate("ugh", "hello there, ${*name}!");
+		stringtree.putTemplate("ugh", "hello there, ${*name}!");
 		
 		emo.putTemplate("ugh", "hello there, ${*name}!");
 
-		vel.putTemplate("ugh", "hello there, #include(\"name\")!");
+		velocity.putTemplate("ugh", "hello there, #include(\"name\")!");
 
-		fm.putTemplate("ugh", "hello there, <#include \"name\">!");
+		freemarker.putTemplate("ugh", "hello there, <#include \"name\">!");
 
 		hapax.putTemplate("ugh", "hello there, {{~name}}!"); // Hapax does not seem to have includes
 
@@ -45,13 +45,13 @@ public class SingleTemplateTest extends PerformanceTestCase {
 	public void testConditionalSubstitution() {
 		putContext("yes", Boolean.TRUE);
 
-		st.putTemplate("ugh", "hello there, ${yes?'Frank':'Margaret'}!");
+		stringtree.putTemplate("ugh", "hello there, ${yes?'Frank':'Margaret'}!");
 
 		emo.putTemplate("ugh", "hello there, ${yes?'Frank':'Margaret'}!");
 
-		vel.putTemplate("ugh", "hello there, #if($yes)Frank#else#**#Margaret#end!");
+		velocity.putTemplate("ugh", "hello there, #if($yes)Frank#else#**#Margaret#end!");
 
-		fm.putTemplate("ugh", "hello there, <#if yes>Frank<#else>Margaret</#if>!");
+		freemarker.putTemplate("ugh", "hello there, <#if yes>Frank<#else>Margaret</#if>!");
 
 		hapax.putTemplate("ugh", "hello there, {{yes}}!"); // Hapax does not seem to have conditioals
 
@@ -72,15 +72,15 @@ public class SingleTemplateTest extends PerformanceTestCase {
 	public void testIteration() {
 		putContext("family", Arrays.asList("Frank", "Margaret", "Elizabeth", "Katherine"));
 
-		st.putTemplate("person", "[${this}]");
-		st.putTemplate("ugh", "hello there, ${family*person/','}!");
+		stringtree.putTemplate("person", "[${this}]");
+		stringtree.putTemplate("ugh", "hello there, ${family*person/','}!");
 
 		emo.putTemplate("person", "[${this}]");
 		emo.putTemplate("ugh", "hello there, ${family*person/','}!");
 
-		vel.putTemplate("ugh", "hello there, #foreach($person in $family)[$person],#end!");
+		velocity.putTemplate("ugh", "hello there, #foreach($person in $family)[$person],#end!");
 
-		fm.putTemplate("ugh", "hello there, <#list family as person>[${person}]<#if person_has_next>,</#if></#list>!");
+		freemarker.putTemplate("ugh", "hello there, <#list family as person>[${person}]<#if person_has_next>,</#if></#list>!");
 		
 		hapax.putTemplate("ugh", "{{#family}}[{{family}}]{{#family_separator}},{{/family_separator}}{{/family}}");
 

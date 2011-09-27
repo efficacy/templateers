@@ -17,25 +17,25 @@ import wrapper.TemplateSystem;
 import wrapper.VelocityTemplateSystem;
 
 public abstract class PerformanceTestCase extends TestCase {
-	protected StringtreeTemplateSystem st;
+	protected StringtreeTemplateSystem stringtree;
 	protected EmoTemplateSystem emo;
-	protected VelocityTemplateSystem vel;
-	protected FreeMarkerTemplateSystem fm;
+	protected VelocityTemplateSystem velocity;
+	protected FreeMarkerTemplateSystem freemarker;
 	protected HapaxTemplateSystem hapax;
 	protected CasperTemplateSystem casper;
 	
 	Collection<TemplateSystem> systems;
 	
 	public void setUp() {
-		st = new StringtreeTemplateSystem();
+		stringtree = new StringtreeTemplateSystem();
 		emo = new EmoTemplateSystem();
-		vel = new VelocityTemplateSystem();
-		fm = new FreeMarkerTemplateSystem();
+		velocity = new VelocityTemplateSystem();
+		freemarker = new FreeMarkerTemplateSystem();
 		hapax = new HapaxTemplateSystem();
 		casper = new CasperTemplateSystem();
 		
 		systems = new ArrayList<TemplateSystem>(); 
-		systems.addAll(Arrays.asList(emo, st, fm, vel, hapax, casper));
+		systems.addAll(Arrays.asList(emo, stringtree, freemarker, velocity, hapax, casper));
 	}
 	
 	public void testSystem() {
