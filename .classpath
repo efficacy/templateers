@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="lib/freemarker.jar"/>
 	<classpathentry kind="lib" path="lib/casper.jar"/>
 	<classpathentry kind="lib" path="lib/xfltr-hapax-1.0.5.jar"/>
+	<classpathentry kind="lib" path="lib/antlr-3.3-complete.jar"/>
+	<classpathentry kind="lib" path="lib/ST-4.0.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
