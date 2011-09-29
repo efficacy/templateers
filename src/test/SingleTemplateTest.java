@@ -2,12 +2,17 @@ package test;
 
 import java.util.Arrays;
 
+import wrapper.TemplateSystem;
+
 public class SingleTemplateTest extends PerformanceTestCase {
 
 	int times = 10000; // 10000
 
 	public void testAbsorbSetupTime() {
-		assertEquals("hello", "hello");
+		putTemplate("ugh", "hello there!");
+		for (TemplateSystem system : systems) {
+			system.check("plain text", 1, "hello there!", "ugh");
+		}
 	}
 	
 	public void testPlainText() {
@@ -21,6 +26,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		stringtree.putTemplate("ugh", "hello there, ${name}!");
 		emo.putTemplate("ugh", "hello there, ${name}!");
 		stringtemplate.defineTemplate("ugh", "hello there, <name>!", "name");
+		mustache.putTemplate("ugh", "hello there, {{name}}!");
 		velocity.putTemplate("ugh", "hello there, ${name}!");
 		freemarker.putTemplate("ugh", "hello there, ${name}!");
 		hapax.putTemplate("ugh", "hello there, {{name}}!");
@@ -35,6 +41,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		stringtree.putTemplate("ugh", "hello there, ${*name}!");
 		emo.putTemplate("ugh", "hello there, ${*name}!");
 		stringtemplate.defineTemplate("ugh", "hello there, <name()>!", "name");
+		mustache.putTemplate("ugh", "hello there, {{> name}}!");
 		velocity.putTemplate("ugh", "hello there, #include(\"name\")!");
 		freemarker.putTemplate("ugh", "hello there, <#include \"name\">!");
 		hapax.putTemplate("ugh", "hello there, {{~name}}!"); // Hapax does not seem to have includes
@@ -44,17 +51,21 @@ public class SingleTemplateTest extends PerformanceTestCase {
 	}
 
 	public void testConditionalSubstitution() {
-		putContext("yes", Boolean.TRUE);
 
 		stringtree.putTemplate("ugh", "hello there, ${yes?'Frank':'Margaret'}!");
 		emo.putTemplate("ugh", "hello there, ${yes?'Frank':'Margaret'}!");
 		stringtemplate.defineTemplate("ugh", "hello there, <if(yes)>Frank<else>Margaret<endif>!", "yes");
+		mustache.putTemplate("ugh", "hello there, {{#yes}}Frank{{/yes}}{{^yes}}Margaret{{/yes}}!");
 		velocity.putTemplate("ugh", "hello there, #if($yes)Frank#else#**#Margaret#end!");
 		freemarker.putTemplate("ugh", "hello there, <#if yes>Frank<#else>Margaret</#if>!");
 		hapax.putTemplate("ugh", "hello there, {{yes}}!"); // Hapax does not seem to have conditioals
 		casper.putTemplate("ugh", "hello there, <% if (yes) { $out('Frank'); } else { $out('Margaret'); } %>!");
 
-		check("conditional", times, "hello there, Frank!", "ugh");
+		putContext("yes", Boolean.TRUE);
+		check("cond-true", times, "hello there, Frank!", "ugh");
+
+		putContext("yes", Boolean.FALSE);
+		check("cond-false", times, "hello there, Margaret!", "ugh");
 	}
 
 	public void testBeanCall() {
@@ -62,6 +73,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		stringtree.putTemplate("ugh", "name=${obj.name}");
 		emo.putTemplate("ugh", "name=${obj.name}");
 		stringtemplate.defineTemplate("ugh", "name=${obj.name}", "obj");
+		mustache.putTemplate("ugh", "name={{obj.name}}");
 		velocity.putTemplate("ugh", "name=${obj.name}");
 		freemarker.putTemplate("ugh", "name=${obj.name}");
 		hapax.putTemplate("ugh", "name={{obj.name}}"); // Hapax does not seem to have bean calls
@@ -80,6 +92,8 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		emo.putTemplate("ugh", "hello there, ${family*person/','}!");
 
 		stringtemplate.defineTemplate("ugh", "hello there, <first(family):{p|[<p>]}><rest(family):{p|,[<p>]}>!", "family");
+		mustache.putTemplate("ugh", "hello there, {{#family}}[{{toString}}],{{/family}}!");
+		
 
 		velocity.putTemplate("ugh", "hello there, #foreach($person in $family)[$person],#end!");
 		freemarker.putTemplate("ugh", "hello there, <#list family as person>[${person}]<#if person_has_next>,</#if></#list>!");
