@@ -5,13 +5,13 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/emo"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/stringtree"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
-	<classpathentry kind="lib" path="lib/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="lib/velocity-1.7.jar"/>
-	<classpathentry kind="lib" path="lib/freemarker.jar"/>
-	<classpathentry kind="lib" path="lib/casper.jar"/>
-	<classpathentry kind="lib" path="lib/xfltr-hapax-1.0.5.jar"/>
-	<classpathentry kind="lib" path="lib/antlr-3.3-complete.jar"/>
-	<classpathentry kind="lib" path="lib/ST-4.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/casper/casper.jar"/>
+	<classpathentry kind="lib" path="lib/hapax/xfltr-hapax-1.0.5.jar"/>
+	<classpathentry kind="lib" path="lib/freemarker/freemarker.jar"/>
+	<classpathentry kind="lib" path="lib/strringtemplate/antlr-3.3-complete.jar"/>
+	<classpathentry kind="lib" path="lib/strringtemplate/ST-4.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/velocity/velocity-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/velocity/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/velocity/commons-lang-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
