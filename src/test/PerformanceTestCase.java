@@ -12,6 +12,7 @@ import wrapper.CasperTemplateSystem;
 import wrapper.EmoTemplateSystem;
 import wrapper.FreeMarkerTemplateSystem;
 import wrapper.HapaxTemplateSystem;
+import wrapper.JMTETemplateSystem;
 import wrapper.MustacheJTemplateSystem;
 import wrapper.StringTemplateTemplateSystem;
 import wrapper.StringtreeTemplateSystem;
@@ -21,6 +22,7 @@ import wrapper.VelocityTemplateSystem;
 public abstract class PerformanceTestCase extends TestCase {
 	protected StringtreeTemplateSystem stringtree;
 	protected EmoTemplateSystem emo;
+	protected JMTETemplateSystem jmte;
 	protected StringTemplateTemplateSystem stringtemplate;
 	protected MustacheJTemplateSystem mustache;
 	protected VelocityTemplateSystem velocity;
@@ -33,6 +35,7 @@ public abstract class PerformanceTestCase extends TestCase {
 	public void setUp() {
 		stringtree = new StringtreeTemplateSystem();
 		emo = new EmoTemplateSystem();
+		jmte = new JMTETemplateSystem();
 		stringtemplate = new StringTemplateTemplateSystem();
 		mustache = new MustacheJTemplateSystem();
 		velocity = new VelocityTemplateSystem();
@@ -43,7 +46,8 @@ public abstract class PerformanceTestCase extends TestCase {
 		systems = new ArrayList<TemplateSystem>(); 
 		systems.addAll(Arrays.asList(
 				emo,
-				stringtree, 
+				stringtree,
+				jmte,
 				mustache, 
 				stringtemplate, 
 				freemarker, 

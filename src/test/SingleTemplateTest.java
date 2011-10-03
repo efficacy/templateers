@@ -25,6 +25,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 
 		stringtree.putTemplate("ugh", "hello there, ${name}!");
 		emo.putTemplate("ugh", "hello there, ${name}!");
+		jmte.putTemplate("ugh", "hello there, ${name}!");
 		stringtemplate.defineTemplate("ugh", "hello there, <name>!", "name");
 		mustache.putTemplate("ugh", "hello there, {{name}}!");
 		velocity.putTemplate("ugh", "hello there, ${name}!");
@@ -40,6 +41,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 
 		stringtree.putTemplate("ugh", "hello there, ${*name}!");
 		emo.putTemplate("ugh", "hello there, ${*name}!");
+		jmte.putTemplate("ugh", "hello there, ${what}!"); // jmte does not seem to have includes
 		stringtemplate.defineTemplate("ugh", "hello there, <name()>!", "name");
 		mustache.putTemplate("ugh", "hello there, {{> name}}!");
 		velocity.putTemplate("ugh", "hello there, #include(\"name\")!");
@@ -54,6 +56,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 
 		stringtree.putTemplate("ugh", "hello there, ${yes?'Frank':'Margaret'}!");
 		emo.putTemplate("ugh", "hello there, ${yes?'Frank':'Margaret'}!");
+		jmte.putTemplate("ugh", "hello there, ${if yes}Frank${else}Margaret${end}!");
 		stringtemplate.defineTemplate("ugh", "hello there, <if(yes)>Frank<else>Margaret<endif>!", "yes");
 		mustache.putTemplate("ugh", "hello there, {{#yes}}Frank{{/yes}}{{^yes}}Margaret{{/yes}}!");
 		velocity.putTemplate("ugh", "hello there, #if($yes)Frank#else#**#Margaret#end!");
@@ -72,6 +75,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		putContext("obj", this);
 		stringtree.putTemplate("ugh", "name=${obj.name}");
 		emo.putTemplate("ugh", "name=${obj.name}");
+		jmte.putTemplate("ugh", "name=${obj.name}");
 		stringtemplate.defineTemplate("ugh", "name=${obj.name}", "obj");
 		mustache.putTemplate("ugh", "name={{obj.name}}");
 		velocity.putTemplate("ugh", "name=${obj.name}");
@@ -90,6 +94,8 @@ public class SingleTemplateTest extends PerformanceTestCase {
 
 		emo.putTemplate("person", "[${this}]");
 		emo.putTemplate("ugh", "hello there, ${family*person/','}!");
+		
+		jmte.putTemplate("ugh", "hello there, ${foreach family person ,}[${person}]${end}!");
 
 		stringtemplate.defineTemplate("ugh", "hello there, <first(family):{p|[<p>]}><rest(family):{p|,[<p>]}>!", "family");
 		mustache.putTemplate("ugh", "hello there, {{#family}}[{{toString}}],{{/family}}!");
