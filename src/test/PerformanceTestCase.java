@@ -9,7 +9,7 @@ import java.util.Properties;
 
 import junit.framework.TestCase;
 import wrapper.CasperTemplateSystem;
-import wrapper.EmoTemplateSystem;
+import wrapper.SolomonTemplateSystem;
 import wrapper.FreeMarkerTemplateSystem;
 import wrapper.HapaxTemplateSystem;
 import wrapper.JMTETemplateSystem;
@@ -21,7 +21,7 @@ import wrapper.VelocityTemplateSystem;
 
 public abstract class PerformanceTestCase extends TestCase {
 	protected StringtreeTemplateSystem stringtree;
-	protected EmoTemplateSystem emo;
+	protected SolomonTemplateSystem emo;
 	protected JMTETemplateSystem jmte;
 	protected StringTemplateTemplateSystem stringtemplate;
 	protected MustacheJTemplateSystem mustache;
@@ -34,7 +34,7 @@ public abstract class PerformanceTestCase extends TestCase {
 	
 	public void setUp() {
 		stringtree = new StringtreeTemplateSystem();
-		emo = new EmoTemplateSystem();
+		emo = new SolomonTemplateSystem();
 		jmte = new JMTETemplateSystem();
 		stringtemplate = new StringTemplateTemplateSystem();
 		mustache = new MustacheJTemplateSystem();
