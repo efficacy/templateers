@@ -9,6 +9,7 @@ import java.util.Properties;
 
 import junit.framework.TestCase;
 import wrapper.CasperTemplateSystem;
+import wrapper.JangodTemplateSystem;
 import wrapper.SolomonTemplateSystem;
 import wrapper.FreeMarkerTemplateSystem;
 import wrapper.HapaxTemplateSystem;
@@ -29,6 +30,7 @@ public abstract class PerformanceTestCase extends TestCase {
 	protected FreeMarkerTemplateSystem freemarker;
 	protected HapaxTemplateSystem hapax;
 	protected CasperTemplateSystem casper;
+	protected JangodTemplateSystem jangod;
 	
 	Collection<TemplateSystem> systems;
 	
@@ -42,6 +44,7 @@ public abstract class PerformanceTestCase extends TestCase {
 		freemarker = new FreeMarkerTemplateSystem();
 		hapax = new HapaxTemplateSystem();
 		casper = new CasperTemplateSystem();
+		jangod = new JangodTemplateSystem();
 		
 		systems = new ArrayList<TemplateSystem>(); 
 		systems.addAll(Arrays.asList(
@@ -53,7 +56,8 @@ public abstract class PerformanceTestCase extends TestCase {
 				freemarker, 
 				velocity, 
 				hapax, 
-				casper
+				casper,
+				jangod
 			));
 	}
 	

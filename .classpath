@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="lib/jmte/jmte-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/solomon/emo.jar"/>
 	<classpathentry kind="lib" path="lib/stringtree/stringtree-2.1.3.jar"/>
+	<classpathentry kind="lib" path="lib/jangod/jangod-template.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
