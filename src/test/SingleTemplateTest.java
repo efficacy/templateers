@@ -33,6 +33,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		hapax.putTemplate("ugh", "hello there, {{name}}!");
 		casper.putTemplate("ugh", "hello there, ${name}!");
 		jangod.putTemplate("ugh", "hello there, {{name}}!");
+		mvel.putTemplate("ugh", "hello there, @{name}!");
 		
 		check("single subst", times, "hello there, Frank!", "ugh");
 	}
@@ -50,6 +51,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		hapax.putTemplate("ugh", "hello there, {{~name}}!"); // Hapax does not seem to have includes
 		casper.putTemplate("ugh", "hello there, ${templates.get('name')}!");
 		jangod.putTemplate("ugh", "hello there, {% include \"name.jangod\" %}!");
+		mvel.putTemplate("ugh", "hello there, @includeNamed{'name'}!");
 		
 		check("include", times, "hello there, Frank!", "ugh");
 	}
@@ -66,6 +68,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		hapax.putTemplate("ugh", "hello there, {{yes}}!"); // Hapax does not seem to have conditioals
 		casper.putTemplate("ugh", "hello there, <% if (yes) { $out('Frank'); } else { $out('Margaret'); } %>!");
 		jangod.putTemplate("ugh", "hello there, {% if yes %}Frank{% else %}Margaret{% endif %}!");
+		mvel.putTemplate("ugh", "hello there, @if{yes}Frank@else{}Margaret@end{}!");
 
 		putContext("yes", Boolean.TRUE);
 		check("cond-true", times, "hello there, Frank!", "ugh");
@@ -86,6 +89,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		hapax.putTemplate("ugh", "name={{obj.name}}"); // Hapax does not seem to have bean calls
 		casper.putTemplate("ugh", "name=${obj.name}");
 		jangod.putTemplate("ugh", "name={{obj.getName()}}");
+		mvel.putTemplate("ugh", "name=@{obj.name}");
 
 		check("bean call", times, "name=testBeanCall", "ugh");
 	}
@@ -109,6 +113,7 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		hapax.putTemplate("ugh", "hello there, [ {{#family}}{{family}} {{/family}}]");
 		casper.putTemplate("ugh", "hello there, [ <% for (i=0; i < family.size(); i++) { $out(family.get(i) + ' '); } %>]");
 		jangod.putTemplate("ugh", "hello there, [ {% for person in family %}{{person}} {% endfor %}]");
+		mvel.putTemplate("ugh", "hello there, [ @foreach{person : family}@{person} @end{}]");
 
 		check("iteration", times, "hello there, [ Frank Margaret Elizabeth Katherine ]", "ugh");
 	}
@@ -131,7 +136,8 @@ public class SingleTemplateTest extends PerformanceTestCase {
 		freemarker.putTemplate("ugh", "hello there, <#list family as person>[${person}]<#if person_has_next>,</#if></#list>!");
 		hapax.putTemplate("ugh", "hello there, {{#family}}[{{family}}]{{#family_separator}},{{/family_separator}}{{/family}}!");
 		casper.putTemplate("ugh", "hello there, <% n = family.size(); for (i=0; i < n; i++) { $out('[' + family.get(i) + ']'); if (i < n-1) $out(','); } %>!");
-		jangod.putTemplate("ugh", "hello there, {% for person in family %}]{{person}}],{% endfor %}!");
+		jangod.putTemplate("ugh", "hello there, {% for person in family %}[{{person}}],{% endfor %}!");
+		mvel.putTemplate("ugh", "hello there, @foreach{person : family}[@{person}]@end{','}!");
 
 		check("separated", times, "hello there, [Frank],[Margaret],[Elizabeth],[Katherine]!", "ugh");
 	}
